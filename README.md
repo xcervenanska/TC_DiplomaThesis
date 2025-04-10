@@ -1,97 +1,90 @@
-# TC_DiplomaThesis
-Inštalačný manuál pre projekt Study Material RAG na Windows
+# Study Material RAG Project
 
-Tento návod poskytuje podrobné pokyny na inštaláciu a spustenie projektu Study Material RAG (Retrieval-Augmented Generation) na počítači so systémom Windows. Projekt využíva Ollama na lokálne spracovanie veľkých jazykových modelov (LLM), Docker na kontajnerizáciu a Docker Compose na orchestráciu aplikácie. Táto aktualizovaná verzia rieši chybu "MarkItDown returned None result".
+An advanced retrieval-augmented generation (RAG) pipeline designed for exploring study material using a backend service and a Streamlit frontend. It leverages local LLM capabilities via Ollama for efficient and interactive document retrieval and answer generation.
 
-1. Inštalácia Ollama a stiahnutie požadovaného modelu
+## Table of Contents
+- [Overview](#overview)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Environment Setup](#environment-setup)
+- [Running the Project](#running-the-project)
+- [Ollama Integration](#ollama-integration)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
 
-Ollama umožňuje spúšťať veľké jazykové modely (LLM) lokálne.
+## Overview
+This project implements a RAG pipeline that extracts and processes study materials, enabling users to retrieve information and get answers using local LLMs. It comprises two main components:
 
-Stiahnite si Ollama: Prejdite na https://ollama.ai/download/windows a stiahnite inštalačný súbor pre Windows.
-Nainštalujte Ollama: Spustite inštalátor a postupujte podľa pokynov na obrazovke.
-Otvorte terminál: Spustite Command Prompt alebo PowerShell.
-Stiahnite model: Zadajte nasledujúci príkaz:
+- A **Backend Service** built with FastAPI that handles document processing, vector storage, and interactions with local LLMs via Ollama.
+- A **Streamlit Frontend** that provides a user-friendly interface for querying and exploring the study material.
 
-	ollama pull phi4-mini
+## Project Structure
+```
+.
+├── backend
+│   ├── app/                # Backend application code
+│   ├── main.py             # Entry point for the backend service
+│   ├── requirements.txt    # Python dependencies for the backend
+│   └── Dockerfile          # Dockerfile to build the backend image
+├── streamlit_frontend
+│   ├── pages/              # Streamlit pages
+│   ├── Home.py             # Main Streamlit application file
+│   ├── requirements.txt    # Python dependencies for the frontend
+│   └── Dockerfile          # Dockerfile to build the frontend image
+└── .env                    # Environment variables configuration file
+```
 
-Počkajte na dokončenie sťahovania modelu.
+## Prerequisites
+- [Docker](https://www.docker.com/get-started)
+- [Ollama](https://ollama.ai/) - a local LLM server
+  - Install Ollama by following the instructions at [ollama.ai](https://ollama.ai).
+  - Pull your preferred model (e.g., mistral, llama2, phi) using:
+    ```bash
+    ollama pull mistral
+    ```
+  - Ensure Ollama is running locally on port **11434**.
 
+## Environment Setup
+1. Create a `.env` file in the root directory with the following content:
+    ```env
+    OLLAMA_BASE_URL=http://localhost:11434
+    OLLAMA_MODEL=mistral  # or your preferred model
+    ```
+2. Adjust any other configurations as necessary for your local setup.
 
-2. Inštalácia Docker Desktop
-Docker umožňuje spúšťať aplikácie v izolovaných kontajneroch.
+## Running the Project
 
-Stiahnite si Docker Desktop: Prejdite na https://www.docker.com/products/docker-desktop/ a stiahnite inštalačný súbor.
-Nainštalujte Docker Desktop: Spustite inštalátor. Počas inštalácie povolte WSL 2 integráciu, ak budete k tomu vyzvaní. Ak virtualizácia nie je povolená, možno ju bude potrebné zapnúť v BIOS-e.
-Spustite Docker Desktop: Po dokončení inštalácie ho otvorte cez Štart menu. Pri prvom spustení vás môže Docker vyzvať na prihlásenie alebo registráciu.
-Overte inštaláciu: Spustite príkazový riadok a zadajte:
+We have simplified the process by using Docker Compose to orchestrate the multi-container application. Make sure Docker Compose is installed.
 
-	docker --version
-	docker compose version
+From the project root directory, run the following command:
 
-Ak sa zobrazia verzie, Docker bol nainštalovaný správne.
+```bash
+docker compose up --build
+```
 
+This command will build and start both the backend service and the Streamlit frontend containers.
 
-3. Klonovanie repozitára z GitHubu
-Otvorte Command Promp alebo PowerShell.
-Prejdite do adresára, kde chcete projekt uložiť.
-Klonujte repozitár:
+**Notes:**
+- The backend service will be accessible at [http://localhost:8000](http://localhost:8000).
+- The Streamlit frontend will be accessible at [http://localhost:8501](http://localhost:8501).
+- For Linux Users, the backend service uses host network mode. For macOS and Windows, the Docker Compose configuration sets the environment variable OLLAMA_BASE_URL to use `host.docker.internal` so that the local Ollama server is accessible within the containers.
 
+## Ollama Integration
+This project integrates with Ollama to power local LLM responses. Key features include:
+- Support for multiple open-source models (mistral, llama2, phi, etc.)
+- Streaming responses for interactive and real-time querying
+- Easy model switching via the `.env` file
 
-	git clone https://github.com/MichalCervenansky/Study-material-RAG
+Ensure that Ollama is running and accessible before starting the backend service.
 
-Tento príkaz stiahne všetky súbory projektu do vášho počítača.
-Prejdite do adresára projektu:
+## Troubleshooting
+- **Docker Networking on macOS/Windows:** If you experience connectivity issues due to `--network host`, use the `host.docker.internal` approach as shown above.
+- **Ollama Connection Issues:** Verify that the Ollama server is running by visiting [http://localhost:11434](http://localhost:11434). Adjust the `OLLAMA_BASE_URL` in your `.env` file if necessary.
+- **Permission Issues:** Make sure Docker has the required permissions, and that your firewall settings are not blocking the necessary ports.
 
-	cd Study-material-RAG
+## Contributing
+Contributions are welcome! Please fork the repository, make your improvements, and submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
 
-4. Konfigurácia súboru .env
-Systém používa konfiguračný súbor .env na uloženie dôležitých premenných prostredia.
-
-Skontrolujte, či sa v koreňovom adresári projektu (Study-material-RAG) nachádza súbor .env. Ak nie, je potrebné ho vytvoriť.
-
-Otvorte .env súbor v textovom editore a skontrolujte, či sa tam nachádzajú nasledujúce nastavenia:
-
-	BACKEND_URL=http://localhost:8000
-	OLLAMA_BASE_URL=http://host.docker.internal:11434
-	OLLAMA_MODEL=phi4-mini
-	CHUNK_SIZE=1000
-	CHUNK_OVERLAP=200
-	CHROMA_ALLOW_RESET=true
-	CHROMA_ANONYMIZED_TELEMETRY=false
-	CHROMA_IS_PERSISTENT=true
-	DISTANCE_THRESHOLD=1.5
-	N_RESULTS=5  # Počet úsekov textu, ktoré sa načítajú pri dopytoch do dokumentov
-
-
-BACKEND_URL – URL adresa backendu.
-OLLAMA_BASE_URL – URL adresa Ollama servera. host.docker.internal sa používa na prístup k hostiteľskému systému z Docker kontajnera.
-OLLAMA_MODEL – Model, ktorý bude použitý (phi4-mini).
-CHUNK_SIZE, CHUNK_OVERLAP, DISTANCE_THRESHOLD, N_RESULTS – Nastavenia ovplyvňujúce proces RAG (retrieval-augmented generation).
-CHROMA_ – Nastavenia databázy ChromaDB.
-
-Ak sa tam vyššie nastavenia nenachádzajú, doplňte ich.
-Uložte súbor .env.
-
-5. Spustenie projektu pomocou Docker Compose
-Systém je možné jednoducho spustiť pomocou Docker Compose.
-
-Otvorte Command Prompt alebo PowerShell.
-
-Prejdite do adresára projektu (Study-material-RAG), ak tam ešte nie ste.
-
-Spustite Docker Compose:
-
-	docker compose up --build
-
-Tento príkaz zostaví Docker obrazy backendu a frontend aplikácie (ak neexistujú alebo boli zmenené).
-Spustí kontajnery definované v súbore docker-compose.yml.
-Počkajte, kým Docker Compose zostaví obrazy a spustí kontajnery. Výstup sa zobrazí v termináli.
-
-6. Prístup k aplikácii
-Po úspešnom spustení kontajnerov bude aplikácia dostupná cez webový prehliadač:
-
-Backend služba: http://localhost:8000
-Zobrazí sa FastAPI rozhranie.
-
-Streamlit Frontend: http://localhost:8501
-Toto je grafické užívateľské rozhranie, ktoré umožňuje zadávať otázky k dokumentom.
+## License
+This project is licensed under the [MIT License](LICENSE).
