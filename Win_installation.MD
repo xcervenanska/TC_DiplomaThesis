@@ -1,93 +1,111 @@
-# Installation Manual for Study Material RAG Project on Windows - Updated
+# Inštalačný manuál pre projekt Study Material RAG na operačnom systéme Windows
 
-This guide provides step-by-step instructions for installing and running the Study Material RAG (Retrieval-Augmented Generation) project on a Windows computer. This project utilizes Ollama for local LLM capabilities, Docker for containerization, and Docker Compose for orchestrating the application. This update addresses the "MarkItDown returned None result" error.
+Táto príručka obsahuje podrobné inštrukcie pre inštaláciu a spustenie projektu Study Material RAG (Retrieval-Augmented Generation) na počítači s operačným systémom Windows. Projekt využíva Ollama na lokálne spúšťanie veľkých jazykových modelov (LLM), Docker na kontajnerizáciu a Docker Compose na orchestráciu aplikácie. 
 
-## 1. Install Ollama and Pull the Required Model
+1. Inštalácia Ollama a stiahnutie požadovaného modelu
+Ollama umožňuje lokálne spúšťanie veľkých jazykových modelov (LLM).
 
-Ollama allows you to run Large Language Models (LLMs) locally.
+Stiahnutie Ollama: Navštívte stránku https://ollama.ai/download/windows a stiahnite si inštalačný súbor pre Windows.
 
-1. **Download Ollama:** Go to [https://ollama.ai/download/windows](https://ollama.ai/download/windows) and download the Windows installer.
-2. **Install Ollama:** Run the downloaded installer and follow the on-screen instructions.
-3. **Open Terminal:** Open a new Command Prompt or PowerShell window.
-4. **Pull the Model:** Use the following command to download the `phi4:14b` model:
-    ```sh
-    ollama pull phi4:14b
-    ```
-    This command downloads the necessary model files. Wait for the download to complete.
+Inštalácia Ollama: Spustite stiahnutý inštalačný súbor a postupujte podľa inštrukcií.
 
-## 2. Install Docker Desktop
+Otvorenie terminálu: Otvorte nový príkazový riadok (Command Prompt) alebo PowerShell.
 
-Docker is a platform for running applications in containers.
+Stiahnutie modelu: Použite nasledujúci príkaz na stiahnutie modelu phi4-mini:
 
-1. **Download Docker Desktop:** Go to [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/) and download Docker Desktop for Windows.
-2. **Install Docker Desktop:** Run the installer. Ensure that you enable WSL 2 integration during installation if prompted. You might need to enable virtualization in your BIOS settings if it's not already enabled.
-3. **Start Docker Desktop:** After installation, start Docker Desktop from the Windows Start menu. Docker might prompt you to log in or create an account.
-4. **Verify Installation:** Open a new Command Prompt or PowerShell window and run:
-    ```sh
-    docker --version
-    docker compose version
-    ```
-    This verifies that Docker and Docker Compose are installed correctly.
 
-## 3. Clone the GitHub Repository
+ollama pull phi4-mini
 
-Clone the Study Material RAG project repository to your local machine.
+Počkajte, kým sa stiahnutie dokončí.
 
-1. **Open Command Prompt or PowerShell:** Navigate to the directory where you want to store the project.
-2. **Clone the Repository:** Use the following command to clone the repository:
-    ```sh
-    git clone https://github.com/MichalCervenansky/Study-material-RAG
-    ```
-    This command downloads the project files to your local machine.
-3. **Navigate to the Project Directory:**
-    ```sh
-    cd Study-material-RAG
-    ```
+2. Inštalácia Docker Desktop
+Docker je platforma pre spúšťanie aplikácií v kontajneroch.
 
-## 4. Configure the .env File
+Stiahnutie Docker Desktop: Prejdite na stránku https://www.docker.com/products/docker-desktop/ a stiahnite Docker Desktop pre Windows.
 
-Create and configure the `.env` file with the necessary environment variables.
+Inštalácia Docker Desktop: Spustite inštalačný súbor. Pri inštalácii povoľte integráciu WSL 2, ak budete vyzvaní. Ak ešte nemáte povolenú virtualizáciu, zapnite ju v nastaveniach BIOS.
 
-1. **Create a `.env` file:** In the root directory of the project (i.e., `Study-material-RAG`), create a file named `.env`.
-2. **Edit the `.env` file:** Open the `.env` file in a text editor and add the following content:
-    ```env
-    BACKEND_URL=http://localhost:8000
-    OLLAMA_BASE_URL=http://host.docker.internal:11434
-    OLLAMA_MODEL=phi4:14b
-    CHUNK_SIZE=1000
-    CHUNK_OVERLAP=200
-    CHROMA_ALLOW_RESET=true
-    CHROMA_ANONYMIZED_TELEMETRY=false
-    CHROMA_IS_PERSISTENT=true
-    DISTANCE_THRESHOLD=1.5
-    N_RESULTS=5  # Number of chunks to retrieve in document queries
-    ```
-    - **BACKEND_URL:** The URL for the backend service.
-    - **OLLAMA_BASE_URL:** The base URL for the Ollama server. `host.docker.internal` is used to access the host machine from within a Docker container on Windows.
-    - **OLLAMA_MODEL:** The name of the Ollama model to use (`phi4:14b` in this case).
-    - **CHUNK_SIZE, CHUNK_OVERLAP, DISTANCE_THRESHOLD, N_RESULTS:** Parameters influencing the RAG pipeline.
-    - **CHROMA_**: ChromaDB settings.
+Spustenie Docker Desktop: Po inštalácii spustite Docker Desktop z ponuky Štart. Môže byť potrebné prihlásiť sa alebo vytvoriť účet.
 
-    Save the file.
+Overenie inštalácie: Otvorte nový príkazový riadok alebo PowerShell a spustite:
 
-## 5. Run the Project with Docker Compose
 
-Use Docker Compose to build and start the application.
+docker --version
+docker compose version
 
-1. **Open Command Prompt or PowerShell:** Navigate to the project's root directory (`Study-material-RAG`) if you are not already there.
-2. **Run Docker Compose:** Execute the following command:
-    ```sh
-    docker compose up --build
-    ```
-    This command performs the following actions:
-    - **--build:** Builds the Docker images for the backend and frontend services if they don't exist or if there are changes in the Dockerfiles.
-    - **up:** Starts the containers defined in the `docker-compose.yml` file.
+Tieto príkazy overia správnu inštaláciu Docker a Docker Compose.
 
-    Wait for the command to complete. Docker Compose will build the images and start the containers. You can follow the progress in the terminal.
+3. Klonovanie GitHub repozitára
+Naklonujte repozitár projektu Study Material RAG na váš počítač.
 
-## 6. Access the Application
+Otvorenie príkazového riadku alebo PowerShell: Prejdite do adresára, v ktorom chcete projekt uložiť.
 
-Once the Docker Compose command has finished and the containers are running, you can access the application in your web browser.
+Klonovanie repozitára: Spustite nasledujúci príkaz:
 
-1. **Backend Service:** Open your web browser and go to `http://localhost:8000`. You should see the FastAPI default page.
-2. **Streamlit Frontend:** Open your web browser and go to `http://localhost:8501`. This will open the Streamlit frontend, providing the user interface for querying the study material.
+git clone https://github.com/xcervenanska/TC_DiplomaThesis
+
+Prechod do adresára projektu:
+
+
+cd TC_DiplomaThesis
+
+
+4. Konfigurácia súboru .env
+Vytvorte a nastavte súbor .env s potrebnými premennými prostredia.
+
+Vytvorenie súboru .env: V koreňovom adresári projektu (t.j. Study-material-RAG) vytvorte súbor s názvom .env.
+
+Úprava súboru .env: Otvorte súbor v textovom editore a vložte nasledovný obsah:
+
+
+BACKEND_URL=http://localhost:8000
+OLLAMA_BASE_URL=http://host.docker.internal:11434
+OLLAMA_MODEL=phi4:14b
+CHUNK_SIZE=1000
+CHUNK_OVERLAP=200
+CHROMA_ALLOW_RESET=true
+CHROMA_ANONYMIZED_TELEMETRY=false
+CHROMA_IS_PERSISTENT=true
+DISTANCE_THRESHOLD=1.5
+N_RESULTS=5  # Počet úsekov textu načítaných pri dopytoch do dokumentov
+
+BACKEND_URL: URL adresa backendovej služby.
+
+OLLAMA_BASE_URL: URL adresa pre server Ollama. Použitie host.docker.internal umožňuje prístup k hostiteľskému počítaču z Docker kontajnera v systéme Windows.
+
+OLLAMA_MODEL: Názov používaného Ollama modelu (phi4:14b v tomto prípade).
+
+CHUNK_SIZE, CHUNK_OVERLAP, DISTANCE_THRESHOLD, N_RESULTS: Parametre ovplyvňujúce spracovanie dokumentov.
+
+CHROMA_*: Nastavenia databázy ChromaDB.
+
+Uložte súbor.
+
+5. Spustenie projektu pomocou Docker Compose
+Pomocou Docker Compose zostavíte a spustíte aplikáciu.
+
+Otvorenie príkazového riadku alebo PowerShell: Prejdite do koreňového adresára projektu (Study-material-RAG), ak sa tam ešte nenachádzate.
+
+Spustenie Docker Compose: Spustite nasledujúci príkaz:
+
+
+docker compose up --build
+
+Tento príkaz vykoná nasledovné operácie:
+
+--build: Zostaví Docker obrazy pre backend a frontend, ak ešte neexistujú, alebo ak nastali zmeny v Dockerfile súboroch.
+
+up: Spustí kontajnery definované v súbore docker-compose.yml.
+
+Počkajte, kým sa proces zostavovania dokončí. Vývoj môžete sledovať v termináli.
+
+6. Prístup k aplikácii
+Po dokončení príkazu Docker Compose a spustení kontajnerov môžete pristúpiť k aplikácii cez webový prehliadač.
+
+Backend služba: Otvorte webový prehliadač a prejdite na http://localhost:8000. Mali by ste vidieť predvolenú stránku FastAPI.
+
+Streamlit Frontend: Otvorte webový prehliadač a prejdite na http://localhost:8501. Tým sa otvorí frontendová aplikácia Streamlit poskytujúca používateľské rozhranie pre zadávanie otázok k študijným materiálom.
+
+
+
+ 
