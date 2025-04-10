@@ -1,0 +1,13 @@
+aiohttp>=3.9.0
+python-dotenv>=1.0.0
+chromadb>=0.4.18
+langchain-text-splitters>=0.0.1
+fastapi>=0.104.0
+uvicorn>=0.24.0
+PyPDF2>=3.0.0
+sentence_transformers
+python-multipart
+markitdown
+python-magic>=0.4.27
+pdfminer.six
+python-docx
