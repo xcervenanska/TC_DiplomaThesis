@@ -60,7 +60,7 @@ Vytvorenie súboru .env: V koreňovom adresári projektu (t.j. Study-material-RA
 
 BACKEND_URL=http://localhost:8000
 OLLAMA_BASE_URL=http://host.docker.internal:11434
-OLLAMA_MODEL=phi4:14b
+OLLAMA_MODEL=phi4-mini
 CHUNK_SIZE=1000
 CHUNK_OVERLAP=200
 CHROMA_ALLOW_RESET=true
@@ -73,7 +73,7 @@ BACKEND_URL: URL adresa backendovej služby.
 
 OLLAMA_BASE_URL: URL adresa pre server Ollama. Použitie host.docker.internal umožňuje prístup k hostiteľskému počítaču z Docker kontajnera v systéme Windows.
 
-OLLAMA_MODEL: Názov používaného Ollama modelu (phi4:14b v tomto prípade).
+OLLAMA_MODEL: Názov používaného Ollama modelu (phi4-mini v tomto prípade).
 
 CHUNK_SIZE, CHUNK_OVERLAP, DISTANCE_THRESHOLD, N_RESULTS: Parametre ovplyvňujúce spracovanie dokumentov.
 
