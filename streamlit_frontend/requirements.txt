@@ -1,0 +1,6 @@
+streamlit
+requests
+pydantic
+PyPDF2
+python-dotenv
+langchain
