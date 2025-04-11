@@ -1,7 +1,6 @@
-Inštalačný manuál pre projekt Study Material RAG na Windows
+# Inštalačný manuál pre projekt
 
-Tento návod poskytuje podrobné pokyny na inštaláciu a spustenie projektu Study Material RAG (Retrieval-Augmented Generation) na počítači so systémom Windows. Projekt využíva Ollama na lokálne spracovanie veľkých jazykových modelov (LLM), Docker na kontajnerizáciu a Docker Compose na orchestráciu aplikácie. Táto aktualizovaná verzia rieši chybu "MarkItDown returned None result".
-
+Tento návod poskytuje podrobné pokyny na inštaláciu a spustenie projektu  na počítači so systémom Windows. Projekt využíva Ollama na lokálne spracovanie veľkých jazykových modelov (LLM), Docker na kontajnerizáciu a Docker Compose na orchestráciu aplikácie. 
 1. Inštalácia Ollama a stiahnutie požadovaného modelu
 
 Ollama umožňuje spúšťať veľké jazykové modely (LLM) lokálne.
