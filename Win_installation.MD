@@ -1,6 +1,6 @@
-# Inštalačný manuál pre projekt Study Material RAG na operačnom systéme Windows
+# Inštalačný manuál pre projekt na operačnom systéme Windows
 
-Táto príručka obsahuje podrobné inštrukcie pre inštaláciu a spustenie projektu Study Material RAG (Retrieval-Augmented Generation) na počítači s operačným systémom Windows. Projekt využíva Ollama na lokálne spúšťanie veľkých jazykových modelov (LLM), Docker na kontajnerizáciu a Docker Compose na orchestráciu aplikácie. 
+Táto príručka obsahuje podrobné inštrukcie pre inštaláciu a spustenie projektu na počítači s operačným systémom Windows. Projekt využíva Ollama na lokálne spúšťanie veľkých jazykových modelov (LLM), Docker na kontajnerizáciu a Docker Compose na orchestráciu aplikácie. 
 
 1. Inštalácia Ollama a stiahnutie požadovaného modelu
 Ollama umožňuje lokálne spúšťanie veľkých jazykových modelov (LLM).
@@ -36,7 +36,7 @@ docker compose version
 Tieto príkazy overia správnu inštaláciu Docker a Docker Compose.
 
 3. Klonovanie GitHub repozitára
-Naklonujte repozitár projektu Study Material RAG na váš počítač.
+Naklonujte repozitár projektu na váš počítač.
 
 Otvorenie príkazového riadku alebo PowerShell: Prejdite do adresára, v ktorom chcete projekt uložiť.
 
@@ -53,7 +53,7 @@ cd TC_DiplomaThesis
 4. Konfigurácia súboru .env
 Vytvorte a nastavte súbor .env s potrebnými premennými prostredia.
 
-Vytvorenie súboru .env: V koreňovom adresári projektu (t.j. Study-material-RAG) vytvorte súbor s názvom .env.
+Vytvorenie súboru .env: V koreňovom adresári projektu (t.j. TC_DiplomaThesis) vytvorte súbor s názvom .env.
 
 Úprava súboru .env: Otvorte súbor v textovom editore a vložte nasledovný obsah:
 
@@ -84,7 +84,7 @@ Uložte súbor.
 5. Spustenie projektu pomocou Docker Compose
 Pomocou Docker Compose zostavíte a spustíte aplikáciu.
 
-Otvorenie príkazového riadku alebo PowerShell: Prejdite do koreňového adresára projektu (Study-material-RAG), ak sa tam ešte nenachádzate.
+Otvorenie príkazového riadku alebo PowerShell: Prejdite do koreňového adresára projektu (TC_DiplomaThesis), ak sa tam ešte nenachádzate.
 
 Spustenie Docker Compose: Spustite nasledujúci príkaz:
 
