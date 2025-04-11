@@ -36,17 +36,17 @@ Prejdite do adresára, kde chcete projekt uložiť.
 Klonujte repozitár:
 
 
-	git clone https://github.com/MichalCervenansky/Study-material-RAG
+	git clone https://github.com/xcervenanska/TC_DiplomaThesis
 
 Tento príkaz stiahne všetky súbory projektu do vášho počítača.
 Prejdite do adresára projektu:
 
-	cd Study-material-RAG
+	cd TC_DiplomaThesis
 
 4. Konfigurácia súboru .env
 Systém používa konfiguračný súbor .env na uloženie dôležitých premenných prostredia.
 
-Skontrolujte, či sa v koreňovom adresári projektu (Study-material-RAG) nachádza súbor .env. Ak nie, je potrebné ho vytvoriť.
+Skontrolujte, či sa v koreňovom adresári projektu (TC_DiplomaThesis) nachádza súbor .env. Ak nie, je potrebné ho vytvoriť.
 
 Otvorte .env súbor v textovom editore a skontrolujte, či sa tam nachádzajú nasledujúce nastavenia:
 
@@ -76,7 +76,7 @@ Systém je možné jednoducho spustiť pomocou Docker Compose.
 
 Otvorte Command Prompt alebo PowerShell.
 
-Prejdite do adresára projektu (Study-material-RAG), ak tam ešte nie ste.
+Prejdite do adresára projektu (TC_DiplomaThesis), ak tam ešte nie ste.
 
 Spustite Docker Compose:
 
