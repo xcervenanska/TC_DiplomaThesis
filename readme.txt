@@ -1,6 +1,24 @@
 # Inštalačný manuál pre projekt
 
 Tento návod poskytuje podrobné pokyny na inštaláciu a spustenie projektu  na počítači so systémom Windows. Projekt využíva Ollama na lokálne spracovanie veľkých jazykových modelov (LLM), Docker na kontajnerizáciu a Docker Compose na orchestráciu aplikácie. 
+
+# Štruktúra projektu
+
+.
+├── backend
+│   ├── app/                # Backend application code
+│   ├── main.py             # Entry point for the backend service
+│   ├── requirements.txt    # Python dependencies for the backend
+│   └── Dockerfile          # Dockerfile to build the backend image
+├── streamlit_frontend
+│   ├── pages/              # Streamlit pages
+│   ├── Home.py             # Main Streamlit application file
+│   ├── requirements.txt    # Python dependencies for the frontend
+│   └── Dockerfile          # Dockerfile to build the frontend image
+└── .env                    # Environment variables configuration file
+
+
+
 1. Inštalácia Ollama a stiahnutie požadovaného modelu
 
 Ollama umožňuje spúšťať veľké jazykové modely (LLM) lokálne.
